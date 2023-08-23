@@ -1,0 +1,28 @@
+name: Main
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - cartopy
+  - dask
+  - fastkml
+  - fiona
+  - geopandas
+  - h5py
+  - jupyterlab
+  - matplotlib
+  - metpy
+  - netcdf4
+  - numpy
+  - pandas
+  - pytables
+  - rasterio
+  - rioxarray
+  - scikit-learn
+  - scipy
+  - seaborn
+  - shapely
+  - simplekml
+  - spyder
+  - synopticpy
+  - xarray
