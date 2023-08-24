@@ -1,0 +1,33 @@
+alias home="cd ~"
+
+# ---- LAIR --------------------------------------------------
+alias air="cd /uufs/chpc.utah.edu/common/home/lin-group9/measurements/air.utah.edu"
+alias data="cd /uufs/chpc.utah.edu/common/home/lin-group9/measurements/data"
+alias group_data="cd /uufs/chpc.utah.edu/common/home/lin-group11/group_data"
+alias measurements="cd /uufs/chpc.utah.edu/common/home/lin-group9/measurements"
+alias pipeline="cd /uufs/chpc.utah.edu/common/home/lin-group9/measurements/pipeline"
+
+# ---- Lin-Groups --------------------------------------------
+alias lg7="cd /uufs/chpc.utah.edu/common/home/lin-group7"
+alias lg8="cd /uufs/chpc.utah.edu/common/home/lin-group8"
+alias lg9="cd /uufs/chpc.utah.edu/common/home/lin-group9"
+alias lg10="cd /uufs/chpc.utah.edu/common/home/lin-group10"
+alias lg11="cd /uufs/chpc.utah.edu/common/home/lin-group11"
+alias lg12="cd /uufs/chpc.utah.edu/common/home/lin-group12"
+alias lg13="cd /uufs/chpc.utah.edu/common/home/lin-group13"
+alias lg14="cd /uufs/chpc.utah.edu/common/home/lin-group14"
+alias lg15="cd /uufs/chpc.utah.edu/common/home/lin-group15"
+alias lg16="cd /uufs/chpc.utah.edu/common/home/lin-group16"
+alias lg17="cd /uufs/chpc.utah.edu/common/home/lin-group17"
+alias lg18="cd /uufs/chpc.utah.edu/common/home/lin-group18"
+alias lg19="cd /uufs/chpc.utah.edu/common/home/lin-group19"
+
+# ---- Projects ----------------------------------------------
+alias lair="cd ~/lair"
+alias landfill="cd ~/wkspace/methane/landfill"
+alias methane="cd ~/wkspace/methane"
+alias mobile="cd ~/wkspace/mobile"
+
+# ---- Python ------------------------------------------------
+alias spyder="env -u SESSION_MANAGER spyder"
+alias new-spyder="env -u SESSION_MANAGER spyder --new-instance"
