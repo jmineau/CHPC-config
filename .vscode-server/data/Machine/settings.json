@@ -1,0 +1,33 @@
+{
+    "files.autoSave": "onWindowChange",
+
+    "[csv][dynamic csv][tsv][csv (semicolon)]": {
+        "editor.stickyScroll.enabled": true
+    },
+    "rainbow_csv.align_in_scratch_file": true,
+    "github.gitProtocol": "ssh",
+    "r.libPaths": [
+        "~/software/R/4.2"
+    ],
+    "MATLAB.installPath": "/uufs/chpc.utah.edu/sys/installdir/matlab/R2023b",
+    "python.defaultInterpreterPath": "~/software/python/miniconda3/envs/Main/bin/python",
+    "python.condaPath": "~/software/python/miniconda3/bin/conda",
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "bash",
+            "args": ["-l"]
+        }
+    },
+    "indentRainbow.indicatorStyle": "light",
+    "indentRainbow.colors": [
+        "rgba(255,255,64,0.3)",
+        "rgba(127,255,127,0.3)",
+        "rgba(255,127,255,0.3)",
+        "rgba(79,236,236,0.3)"],
+    "editor.renderWhitespace": "all",
+    "indentRainbow.ignoreErrorLanguages": [
+        "*"
+    ],
+    "indentRainbow.lightIndicatorStyleLineWidth": 2,
+}

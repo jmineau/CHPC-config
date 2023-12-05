@@ -1,5 +1,6 @@
 import configparser
 import datetime as dt
+from os import path
 import random
 
 
@@ -55,8 +56,9 @@ def get_random_message():
 
 
 # Get birthday
+config_path = path.join(path.expanduser('~'), '.custom.config')
 config = configparser.ConfigParser()
-config.read('.custom.config')
+config.read(config_path)
 
 BIRTHDATE = config['user']['BIRTHDATE']
 birth_date = dt.datetime.strptime(BIRTHDATE, '%Y%m%d').date()

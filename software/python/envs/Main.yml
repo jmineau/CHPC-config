@@ -25,4 +25,5 @@ dependencies:
   - simplekml
   - spyder
   - synopticpy
+  - windrose
   - xarray

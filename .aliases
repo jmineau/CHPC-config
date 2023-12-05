@@ -1,13 +1,18 @@
-alias home="cd ~"
+# ---- Courses -----------------------------------------------
+alias geo-mat="module load matlab && MATLABPATH=/uufs/chpc.utah.edu/common/home/lin-group15/jkm/courses/GEO6250/inversion bash -c 'matlab'"
+
+# ---- Horel-Group -------------------------------------------
+alias horel-group="cd /uufs/chpc.utah.edu/common/home/horel-group"
 
 # ---- LAIR --------------------------------------------------
-alias air="cd /uufs/chpc.utah.edu/common/home/lin-group9/measurements/air.utah.edu"
-alias data="cd /uufs/chpc.utah.edu/common/home/lin-group9/measurements/data"
+alias air="cd /uufs/chpc.utah.edu/common/home/lin-group20/measurements/air.utah.edu"
+alias data="cd /uufs/chpc.utah.edu/common/home/lin-group20/measurements/data"
 alias group_data="cd /uufs/chpc.utah.edu/common/home/lin-group11/group_data"
-alias measurements="cd /uufs/chpc.utah.edu/common/home/lin-group9/measurements"
-alias pipeline="cd /uufs/chpc.utah.edu/common/home/lin-group9/measurements/pipeline"
+alias measurements="cd /uufs/chpc.utah.edu/common/home/lin-group20/measurements"
+alias pipeline="cd /uufs/chpc.utah.edu/common/home/lin-group20/measurements/pipeline"
 
 # ---- Lin-Groups --------------------------------------------
+alias lin-space="df -h | grep lin-group"
 alias lg7="cd /uufs/chpc.utah.edu/common/home/lin-group7"
 alias lg8="cd /uufs/chpc.utah.edu/common/home/lin-group8"
 alias lg9="cd /uufs/chpc.utah.edu/common/home/lin-group9"
@@ -21,9 +26,10 @@ alias lg16="cd /uufs/chpc.utah.edu/common/home/lin-group16"
 alias lg17="cd /uufs/chpc.utah.edu/common/home/lin-group17"
 alias lg18="cd /uufs/chpc.utah.edu/common/home/lin-group18"
 alias lg19="cd /uufs/chpc.utah.edu/common/home/lin-group19"
+alias lg20="cd /uufs/chpc.utah.edu/common/home/lin-group20"
 
 # ---- Projects ----------------------------------------------
-alias lair="cd ~/lair"
+alias lair="cd ~/software/python/pkgs/lair"
 alias landfill="cd ~/wkspace/methane/landfill"
 alias methane="cd ~/wkspace/methane"
 alias mobile="cd ~/wkspace/mobile"
@@ -31,3 +37,19 @@ alias mobile="cd ~/wkspace/mobile"
 # ---- Python ------------------------------------------------
 alias spyder="env -u SESSION_MANAGER spyder"
 alias new-spyder="env -u SESSION_MANAGER spyder --new-instance"
+
+# ---- Slurm -------------------------------------------------
+alias si="sinfo -o \"%20P %5D %14F %8z %10m %10d %11l %32f %N\""
+alias si2="sinfo -o \"%20P %5D %6t %8z %10m %10d %11l %32f %N\""
+alias sq="squeue -o \"%8i %12j %4t %10u %20q %20a %10g %20P %10Q %5D %11l %11L %R\""
+
+# ---- User Directories --------------------------------------
+alias 4others="cd ~/4others"
+alias courses="cd ~/courses"
+alias home="cd ~"
+alias public="cd ~/public_html"
+alias scratch="cd /scratch/local/$USER"
+alias tmp="cd ~/tmp"
+alias users="cd ~/users"
+alias website="cd ~/website"
+alias wkspace="cd ~/wkspace"

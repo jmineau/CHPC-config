@@ -5,6 +5,7 @@
 module use $HOME/software/modules
 module load miniconda3/mineau
 
+#module load ffmpeg
 module load git
 module load R
 module load RStudio
@@ -65,15 +66,23 @@ elif [[ "$UUFSCELL" = "cemi" ]] ; then
 fi
 
 # Uncomment to set TMPDIR from default (and small) /tmp to /scratch/local
-#if [ ! -d /scratch/local/$USER ] ; then
-#     mkdir /scratch/local/$USER 
-#fi
-#export TMPDIR=/scratch/local/$USER 
-
+if [ ! -d /scratch/local/$USER ] ; then
+     mkdir /scratch/local/$USER 
+fi
+export TMPDIR=/scratch/local/$USER 
 
 # Only execute if the shell is interactive
 if [[ $- == *i* ]]; then
     # Welcome Message
-    python3 .days_alive.py
+    python3 $HOME/.days_alive.py
 
 fi
+
+# Add custom python packages to path
+export PYTHONPATH=$PYTHONPATH:$HOME/software/python/pkgs
+
+# Add env variables
+export $(grep -v '^#' $HOME/.env | xargs -d '\n')
+
+# Add API Keys to env
+export $(cat $HOME/.api_keys.env)
