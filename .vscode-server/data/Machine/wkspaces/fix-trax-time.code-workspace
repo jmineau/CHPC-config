@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{	
+			"name": "fix-trax-time",
+			"path": "/uufs/chpc.utah.edu/common/home/u6036966/wkspace/pi/fix_trax_time"
+		},
+		{
+			"name": "data",
+			"path": "/uufs/chpc.utah.edu/common/home/lin-group20/measurements/data"
+		}
+	],
+	"settings": {}
+}

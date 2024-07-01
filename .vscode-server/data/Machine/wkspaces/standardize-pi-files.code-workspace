@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{	
+			"name": "local",
+			"path": "/uufs/chpc.utah.edu/common/home/u6036966/wkspace/pi/standardize_pi_files"
+		},
+		{
+			"name": "test",
+			"path": "/uufs/chpc.utah.edu/common/home/lin-group9/jkm/test_pi_standardization"
+		},
+		{
+			"name": "uataq",
+			"path": "/uufs/chpc.utah.edu/common/home/lin-group20/measurements/standardize_pi_files"
+		}
+	],
+	"settings": {}
+}

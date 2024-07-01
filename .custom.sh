@@ -79,10 +79,13 @@ if [[ $- == *i* ]]; then
 fi
 
 # Add custom python packages to path
-export PYTHONPATH=$PYTHONPATH:$HOME/software/python/pkgs
+#export PYTHONPATH=$PYTHONPATH:$HOME/software/python/pkgs
 
 # Add env variables
-export $(grep -v '^#' $HOME/.env | xargs -d '\n')
+# export $(grep -v '^#' $HOME/.env | xargs -d '\n')
+set -a  # automatically export all variables
+source $HOME/.env
+set +a  # stop automatically exporting all variables
 
 # Add API Keys to env
 export $(cat $HOME/.api_keys.env)

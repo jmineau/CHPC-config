@@ -1,0 +1,15 @@
+{
+    "folders": [
+        {
+            "path": "/uufs/chpc.utah.edu/common/home/lin-group20/measurements/data"
+        },
+        {
+            "path": "/uufs/chpc.utah.edu/common/home/lin-group20/measurements/pipeline"
+        },
+        {
+            "name": "backup",
+            "path": "/uufs/chpc.utah.edu/common/home/lin-group15/jkm/measurements.backup"
+        }
+    ],
+    
+}

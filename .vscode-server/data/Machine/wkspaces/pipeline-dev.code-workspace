@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "/uufs/chpc.utah.edu/common/home/u6036966/wkspace/pipeline"
+		},
+		{
+			"path": "/uufs/chpc.utah.edu/common/home/lin-group20/measurements/data"
+		},
+		{   "name": "uataq-pipeline",
+			"path": "/uufs/chpc.utah.edu/common/home/lin-group20/measurements/pipeline"
+		}
+	],
+	"settings": {}
+}

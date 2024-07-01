@@ -10,6 +10,7 @@ alias data="cd /uufs/chpc.utah.edu/common/home/lin-group20/measurements/data"
 alias group_data="cd /uufs/chpc.utah.edu/common/home/lin-group11/group_data"
 alias measurements="cd /uufs/chpc.utah.edu/common/home/lin-group20/measurements"
 alias pipeline="cd /uufs/chpc.utah.edu/common/home/lin-group20/measurements/pipeline"
+alias pipeline-ps="ps -u u0791084 -f | grep 'run/.*\.r'"
 
 # ---- Lin-Groups --------------------------------------------
 alias lin-space="df -h | grep lin-group"
@@ -38,6 +39,9 @@ alias mobile="cd ~/wkspace/mobile"
 alias spyder="env -u SESSION_MANAGER spyder"
 alias new-spyder="env -u SESSION_MANAGER spyder --new-instance"
 
+# ---- R -----------------------------------------------------
+alias r="radian"
+
 # ---- Slurm -------------------------------------------------
 alias si="sinfo -o \"%20P %5D %14F %8z %10m %10d %11l %32f %N\""
 alias si2="sinfo -o \"%20P %5D %6t %8z %10m %10d %11l %32f %N\""
@@ -50,6 +54,6 @@ alias home="cd ~"
 alias public="cd ~/public_html"
 alias scratch="cd /scratch/local/$USER"
 alias tmp="cd ~/tmp"
-alias users="cd ~/users"
+alias users="ls -la ~/users"
 alias website="cd ~/website"
 alias wkspace="cd ~/wkspace"

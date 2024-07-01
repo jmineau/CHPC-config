@@ -1,0 +1,32 @@
+{
+    "folders": [
+        {
+            "path": "/uufs/chpc.utah.edu/common/home/u6036966/software/python/pkgs/lair"
+        },
+        {
+            "path": "/uufs/chpc.utah.edu/common/home/lin-group20/measurements/data"
+        },
+        {
+            "path": "/uufs/chpc.utah.edu/common/home/lin-group20/measurements/pipeline"
+        },
+        {
+            "name": "group-data",
+            "path": "/uufs/chpc.utah.edu/common/home/lin-group11/group_data"
+        },
+        {
+            "path": "/uufs/chpc.utah.edu/common/home/horel-group"
+        },
+        {
+            "path": "/uufs/chpc.utah.edu/common/home/lin-group15/jkm/lair_archive/_archive"
+        }
+    ],
+    "settings": {
+        "python.analysis.exclude": [
+            "/uufs/chpc.utah.edu/common/home/lin-group20/measurements/data",
+            "/uufs/chpc.utah.edu/common/home/lin-group20/measurements/pipeline",
+            "/uufs/chpc.utah.edu/common/home/lin-group11/group_data",
+            "/uufs/chpc.utah.edu/common/home/horel-group",
+            "/uufs/chpc.utah.edu/common/home/lin-group15/jkm/lair_archive/_archive"
+        ]
+    }
+}

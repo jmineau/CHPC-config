@@ -7,7 +7,7 @@
     "rainbow_csv.align_in_scratch_file": true,
     "github.gitProtocol": "ssh",
     "r.libPaths": [
-        "~/software/R/4.2"
+        "~/software/R/4.4"
     ],
     "MATLAB.installPath": "/uufs/chpc.utah.edu/sys/installdir/matlab/R2023b",
     "python.defaultInterpreterPath": "~/software/python/miniconda3/envs/Main/bin/python",
@@ -30,4 +30,9 @@
         "*"
     ],
     "indentRainbow.lightIndicatorStyleLineWidth": 2,
+
+    // R
+    "[r]": {
+        "editor.tabSize": 2
+    },
 }

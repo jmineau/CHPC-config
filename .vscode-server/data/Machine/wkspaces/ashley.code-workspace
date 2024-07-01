@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"name": "home",
+			"path": "/uufs/chpc.utah.edu/common/home/u6036943"
+		},
+		{
+			"name": "4 Ashley",
+			"path": "/uufs/chpc.utah.edu/common/home/u6036966/4others/Ashley/",
+		},
+		{
+			"name": "Data",
+			"path": "/uufs/chpc.utah.edu/common/home/steenburgh-group7/peter/Obs_MultiRidge"
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.*": true,
+			"home": true,
+			"JamesHelp": true,
+		}
+	}
+}
