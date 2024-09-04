@@ -5,6 +5,7 @@ channels:
 dependencies:
   - cartopy
   - dask
+  - esmpy
   - fastkml
   - fiona
   - geopandas
@@ -27,3 +28,4 @@ dependencies:
   - synopticpy
   - windrose
   - xarray
+  - xesmf

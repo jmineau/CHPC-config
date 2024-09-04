@@ -73,17 +73,21 @@ export TMOUT=0
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/uufs/chpc.utah.edu/common/home/u6036966/software/python/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/uufs/chpc.utah.edu/common/home/u6036966/software/python/miniforge3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/uufs/chpc.utah.edu/common/home/u6036966/software/python/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/uufs/chpc.utah.edu/common/home/u6036966/software/python/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/uufs/chpc.utah.edu/common/home/u6036966/software/python/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/uufs/chpc.utah.edu/common/home/u6036966/software/python/miniforge3/etc/profile.d/conda.sh"
     else
-        export PATH="/uufs/chpc.utah.edu/common/home/u6036966/software/python/miniconda3/bin:$PATH"
+        export PATH="/uufs/chpc.utah.edu/common/home/u6036966/software/python/miniforge3/bin:$PATH"
     fi
 fi
 unset __conda_setup
+
+if [ -f "/uufs/chpc.utah.edu/common/home/u6036966/software/python/miniforge3/etc/profile.d/mamba.sh" ]; then
+    . "/uufs/chpc.utah.edu/common/home/u6036966/software/python/miniforge3/etc/profile.d/mamba.sh"
+fi
 # <<< conda initialize <<<
 
 
@@ -92,5 +96,5 @@ unset __conda_setup
 #    Set command prompt
 PS1='\[\e[00m\][\[\e[1;34m\]Mineau@\h\[\e[00m\]:\[\e[1;36m\]\W\[\e[00m\]]\[\e[1;31m\]> \[\e[00m\]'
 
-#    Set default starting miniconda environment
-conda activate Main
+#    Set default starting miniforge environment
+mamba activate Main

@@ -3,18 +3,18 @@
 # Here add custom module loads for all CHPC Linux systems
 
 module use $HOME/software/modules
-module load miniconda3/mineau
+module load miniforge3/mineau
 
 #module load ffmpeg
 module load git
 module load R
-module load RStudio
+# module load RStudio
 
 # Set R user library directory
-R_MAJOR_VERSION=$( echo "$R_VERSION" | cut -d. -f1-2 )
-R_LIBS_USER=$HOME/software/R/$R_MAJOR_VERSION
-mkdir -p "$R_LIBS_USER"
-export R_LIBS_USER="$R_LIBS_USER"
+# R_MAJOR_VERSION=$( echo "$R_VERSION" | cut -d. -f1-2 )
+# R_LIBS_USER=$HOME/software/R/$R_MAJOR_VERSION
+# mkdir -p "$R_LIBS_USER"
+# export R_LIBS_USER="$R_LIBS_USER"
 
 
 # ----------------------------------------------------------------------
@@ -69,7 +69,13 @@ fi
 if [ ! -d /scratch/local/$USER ] ; then
      mkdir /scratch/local/$USER 
 fi
-export TMPDIR=/scratch/local/$USER 
+export TMPDIR=/scratch/local/$USER
+
+# Start SSH Agent
+#if [ -z "$SSH_AUTH_SOCK" ] ; then
+#    eval $(ssh-agent -s)
+#    ssh-add
+#fi
 
 # Only execute if the shell is interactive
 if [[ $- == *i* ]]; then

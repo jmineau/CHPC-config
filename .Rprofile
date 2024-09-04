@@ -1,15 +1,6 @@
-# Get R version
-R_MAJOR_VERSION <- paste(c(
-  R.version$major,
-  strsplit(R.version$minor, '\\.')[[1]][1]),
-  collapse = '.')
+# Set CRAN mirror
+options(repos = c(CRAN = "https://ftp.osuosl.org/pub/cran/"))
 
-# Set the path to user R library
-R_LIBS_USER <- file.path(path.expand('~'), 'software', 'R', 
-                         R_MAJOR_VERSION)
-# Create directory if it doesn't exist
-if (!dir.exists(R_LIBS_USER)) {
-  dir.create(R_LIBS_USER, recursive = TRUE)
-}
-.libPaths(R_LIBS_USER)
-rm(R_MAJOR_VERSION, R_LIBS_USER)
+# Set R User Library
+source("/uufs/chpc.utah.edu/common/home/u6036966/software/R/user_library.r")
+rm(R_SOFTWARE_DIR, R_MAJOR_VERSION, R_LIBS_USER)

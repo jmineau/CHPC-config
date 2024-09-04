@@ -10,8 +10,8 @@
         "~/software/R/4.4"
     ],
     "MATLAB.installPath": "/uufs/chpc.utah.edu/sys/installdir/matlab/R2023b",
-    "python.defaultInterpreterPath": "~/software/python/miniconda3/envs/Main/bin/python",
-    "python.condaPath": "~/software/python/miniconda3/bin/conda",
+    "python.defaultInterpreterPath": "~/software/python/miniforge3/envs/Main/bin/python",
+    "python.condaPath": "~/software/python/miniforge3/bin/conda",
     "terminal.integrated.defaultProfile.linux": "bash",
     "terminal.integrated.profiles.linux": {
         "bash": {

@@ -18,6 +18,9 @@
         },
         {
             "path": "/uufs/chpc.utah.edu/common/home/lin-group15/jkm/lair_archive/_archive"
+        },
+        {
+            "path": "../../../../../../lin-group23/jkm/lair_cache"
         }
     ],
     "settings": {

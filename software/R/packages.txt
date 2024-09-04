@@ -1,0 +1,7 @@
+dtplyr
+fasttime
+flexdashboard
+formattable
+IRkernel
+languageserver
+leaflet
