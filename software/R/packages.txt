@@ -5,3 +5,5 @@ formattable
 IRkernel
 languageserver
 leaflet
+ncdf4
+rslurm

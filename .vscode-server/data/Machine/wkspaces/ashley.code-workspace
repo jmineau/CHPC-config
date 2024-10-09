@@ -10,7 +10,11 @@
 		},
 		{
 			"name": "Data",
-			"path": "/uufs/chpc.utah.edu/common/home/steenburgh-group7/peter/Obs_MultiRidge"
+			"path": "/uufs/chpc.utah.edu/common/home/steenburgh-group7/peter/Obs_MultiRidge",
+		},
+		{
+			"name": "Jim",
+			"path": "/uufs/chpc.utah.edu/common/home/u0028395/mypy/MRR"
 		}
 	],
 	"settings": {

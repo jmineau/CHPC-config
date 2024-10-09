@@ -36,6 +36,9 @@ alias methane="cd ~/wkspace/methane"
 alias mobile="cd ~/wkspace/mobile"
 
 # ---- Python ------------------------------------------------
+alias activate-mamba="source ~/software/python/miniforge3/etc/profile.d/mamba.sh"
+alias ipy="ipython"
+alias edit-main-env="code ~/software/python/envs/Main.yml"
 alias spyder="env -u SESSION_MANAGER spyder"
 alias new-spyder="env -u SESSION_MANAGER spyder --new-instance"
 

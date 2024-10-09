@@ -9,8 +9,12 @@ dependencies:
   - fastkml
   - fiona
   - geopandas
+  - geoviews
+  - hvplot
   - h5py
+  - ipympl
   - jupyterlab
+  - jupyter_bokeh
   - matplotlib
   - metpy
   - netcdf4
