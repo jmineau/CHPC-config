@@ -75,4 +75,9 @@ export TMOUT=0
 #    Set command prompt
 PS1='\[\e[00m\][\[\e[1;34m\]Mineau@\h\[\e[00m\]:\[\e[1;36m\]\W\[\e[00m\]]\[\e[1;31m\]> \[\e[00m\]'
 
-mamba activate Main  # Activate the Main environment
+activate-conda
+activate-mamba
+# mamba activate Main  # Activate the Main environment
+
+
+. "$HOME/.local/bin/env"

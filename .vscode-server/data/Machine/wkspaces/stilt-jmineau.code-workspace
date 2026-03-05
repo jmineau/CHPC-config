@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "/uufs/chpc.utah.edu/common/home/lin-group24/jkm/stilt/code/jmineau"
+		},
+		{
+			"name": "test",
+			"path": "/uufs/chpc.utah.edu/common/home/lin-group24/jkm/stilt/simulations/test/jmineau"
+		},
+		{
+			"path": "/uufs/chpc.utah.edu/common/home/lin-group24/jkm/stilt/code/uataq"
+		}
+	],
+	"settings": {}
+}

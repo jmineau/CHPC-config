@@ -35,12 +35,18 @@ export $(cat $HOME/.api_keys.env)
 #module load ffmpeg
 module load git  > /dev/null 2>&1
 module load R > /dev/null 2>&1
+module load nodejs/22.4.0 > /dev/null 2>&1
 # module load RStudio
 
+# Bash utils -----------------------------------------------------------
+export PATH="$HOME/software/bash/bin:$PATH"
+
+# Cargo ----------------------------------------------------------
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # Python ---------------------------------------------------------------
 
-activate-mamba  # Activate mamba using /path-to-miniforge3/etc/profile.d/mamba.sh
+# activate-mamba  # Activate mamba using /path-to-miniforge3/etc/profile.d/mamba.sh
 
 # Only execute if the shell is interactive
 if [[ $- == *i* ]]; then

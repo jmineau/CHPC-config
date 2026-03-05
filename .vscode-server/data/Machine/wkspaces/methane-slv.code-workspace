@@ -1,0 +1,36 @@
+{
+	"folders": [
+		{   
+			"name": "methane",
+			"path": "../../../wkspace/methane/SLV"
+		},
+		{
+			"path": "../../python/pkgs/slv/src/slv"
+		},
+		{
+			"path": "../../python/pkgs/fips/src/fips"
+		},
+		{
+			"path": "../../python/pkgs/lair/lair"
+		},
+		{
+			"path": "../../python/pkgs/PYSTILT/src/stilt"
+		},
+		{
+			"path": "../../python/pkgs/uataq/src/uataq"
+		}
+	],
+	"settings": {
+		"chat.tools.terminal.autoApprove": {
+			"/^cd /uufs/chpc\\.utah\\.edu/common/home/u6036966/software/python/pkgs/slv && python -m pytest tests/inversion/test_sweep\\.py -v$/": {
+				"approve": true,
+				"matchCommandLine": true
+			}
+		},
+		"search.exclude": {
+			"**/archive": true,
+			"**/data": true,
+		},
+		
+	}
+}

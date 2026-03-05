@@ -21,7 +21,6 @@
 		"files.exclude": {
 			"**/.*": true,
 			"home": true,
-			"JamesHelp": true,
 		}
 	}
 }
