@@ -1,7 +1,7 @@
 {
     // === Python ===
     "python.condaPath": "~/software/python/miniforge3/bin/conda",
-    "python.defaultInterpreterPath": "~/software/python/miniforge3/envs/Main/bin/python",
+    "python.defaultInterpreterPath": "",
     "python.analysis.extraPaths": [
         "~/software/python/pkgs/lair"
     ],

@@ -33,7 +33,8 @@ hostname = socket.gethostname()
 
 # --- Load and trim user data ---
 user_csv = gimli_dir / 'usage.csv'
-user_df = pd.read_csv(user_csv, parse_dates=['Timestamp'])
+user_df = pd.read_csv(user_csv)
+user_df['Timestamp'] = pd.to_datetime(user_df['Timestamp'], format='ISO8601', errors='coerce')
 user_df['Timestamp'] = user_df['Timestamp'].dt.round('min')
 user_df = user_df[user_df['Timestamp'] >= one_week_ago]
 user_df.to_csv(user_csv, index=False)
@@ -49,7 +50,8 @@ user_pivot.columns = [uid_to_name.get(uid, uid) for uid in user_pivot.columns]
 
 # --- Load and trim program data ---
 prog_csv = gimli_dir / 'program_usage.csv'
-prog_df = pd.read_csv(prog_csv, parse_dates=['Timestamp'])
+prog_df = pd.read_csv(prog_csv)
+prog_df['Timestamp'] = pd.to_datetime(prog_df['Timestamp'], format='ISO8601', errors='coerce')
 prog_df['Timestamp'] = prog_df['Timestamp'].dt.round('min')
 prog_df = prog_df[prog_df['Timestamp'] >= one_week_ago]
 prog_df.to_csv(prog_csv, index=False)

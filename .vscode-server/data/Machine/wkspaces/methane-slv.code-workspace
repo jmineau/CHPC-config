@@ -14,10 +14,15 @@
 			"path": "../../python/pkgs/lair/lair"
 		},
 		{
+			"name": "PYSTILT",
 			"path": "../../python/pkgs/PYSTILT/src/stilt"
 		},
 		{
 			"path": "../../python/pkgs/uataq/src/uataq"
+		},
+		{
+			"name": "R-STILT",
+			"path": "/uufs/chpc.utah.edu/common/home/u6036966/wkspace/stilt/code/jmineau"
 		}
 	],
 	"settings": {
