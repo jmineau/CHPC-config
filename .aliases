@@ -41,6 +41,7 @@ alias sq="squeue -o \"%8i %12j %4t %10u %20q %20a %10g %20P %10Q %5D %11l %11L %
 alias 4others="cd ~/4others"
 alias home="cd ~"
 alias public="cd ~/public_html"
+alias talks="cd ~/lgs/jkm/24/academic/talks"
 alias scratch="cd /scratch/local/$USER"
 alias users="ls -la ~/users"
 alias wkspace="cd ~/wkspace"
