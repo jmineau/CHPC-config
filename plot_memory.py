@@ -1,14 +1,18 @@
 import pandas as pd
+from matplotlib import colors as mcolors
 import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
+import plotly.graph_objects as go
+import plotly.io as pio
+from plotly.subplots import make_subplots
 from datetime import timedelta
 from pathlib import Path
 import socket
 
 gimli_dir = Path('~/public_html/gimli').expanduser()
 users_linkdir = Path('~/users').expanduser()
-output_plot = gimli_dir / 'weekly_usage.png'
+output_plot = gimli_dir / 'weekly_usage.json'
 TOP_N = 10
+MATPLOTLIB_TAB10 = [mcolors.to_hex(color) for color in plt.get_cmap('tab10').colors]
 
 # UID -> display name mapping
 uid_to_name = {}
@@ -66,51 +70,224 @@ prog_other = prog_pivot.pop('other') if 'other' in prog_pivot.columns else None
 prog_pivot = prog_pivot[prog_pivot.mean().sort_values(ascending=False).index]
 
 # --- Helper ---
-def add_ram_line(ax, total_ram_gb):
-    ax.axhline(y=total_ram_gb, color='red', linestyle='--', linewidth=4, zorder=10)
-    ax.text(0.01, total_ram_gb * 1.01, f'Total RAM: {total_ram_gb:.1f} GB',
-            transform=ax.get_yaxis_transform(),
-            verticalalignment='bottom', color='red', fontsize=17, fontweight='bold')
+def axis_ceiling(series, total_ram_gb):
+    series_max = series.max() if not series.empty else 0
+    return max(total_ram_gb, series_max) * 1.1
 
-# --- Figure: 2 subplots sharing x-axis ---
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(16, 10), sharex=True, layout='constrained')
-fig.suptitle(f'{hostname} RSS Memory Usage (Past Week)', fontsize=24, fontweight='bold')
 
-# User subplot
-for col in user_pivot.columns:
-    ax1.plot(user_pivot.index, user_pivot[col], alpha=0.7, label=col, linewidth=3)
+TIME_FORMAT_STOPS = [
+    dict(dtickrange=[None, 1000], value='%H:%M:%S.%L'),
+    dict(dtickrange=[1000, 60 * 1000], value='%H:%M:%S'),
+    dict(dtickrange=[60 * 1000, 60 * 60 * 1000], value='%H:%M'),
+    dict(dtickrange=[60 * 60 * 1000, 24 * 60 * 60 * 1000], value='%a %H:%M'),
+    dict(dtickrange=[24 * 60 * 60 * 1000, 7 * 24 * 60 * 60 * 1000], value='%a %d'),
+    dict(dtickrange=[7 * 24 * 60 * 60 * 1000, 31 * 24 * 60 * 60 * 1000], value='%b %d'),
+    dict(dtickrange=[31 * 24 * 60 * 60 * 1000, 365 * 24 * 60 * 60 * 1000], value='%b %Y'),
+    dict(dtickrange=[365 * 24 * 60 * 60 * 1000, None], value='%Y'),
+]
+
+
+def add_ram_line(fig, row, total_ram_gb):
+    fig.add_hline(
+        y=total_ram_gb,
+        line_color='#ff0000',
+        line_dash='dash',
+        line_width=3,
+        row=row,
+        col=1,
+    )
+    fig.add_annotation(
+        x=0.01,
+        y=total_ram_gb,
+        xref='x domain',
+        yref=f'y{row}',
+        text=f'<b>Total RAM: {total_ram_gb:.1f} GB</b>',
+        showarrow=False,
+        xanchor='left',
+        yanchor='bottom',
+        yshift=6,
+        font=dict(color='#ff0000', size=14),
+        row=row,
+        col=1,
+    )
+
+
+fig = make_subplots(
+    rows=2,
+    cols=1,
+    shared_xaxes=True,
+    vertical_spacing=0.08,
+    subplot_titles=(
+        'By User (RSS may count shared memory multiple times)',
+        f'By Program (Top {TOP_N}; remainder grouped as "other")',
+    ),
+)
+
+for index, col in enumerate(user_pivot.columns):
+    fig.add_trace(
+        go.Scatter(
+            x=user_pivot.index,
+            y=user_pivot[col],
+            mode='lines',
+            name=col,
+            legend='legend',
+            line=dict(width=2.5, color=MATPLOTLIB_TAB10[index % len(MATPLOTLIB_TAB10)]),
+            opacity=0.8,
+            hovertemplate='%{fullData.name}<br>%{y:.2f} GB<extra></extra>',
+        ),
+        row=1,
+        col=1,
+    )
+
 if user_system is not None:
-    ax1.plot(user_system.index, user_system.values, label='system', linestyle=':', linewidth=3, alpha=0.7)
-ax1.plot(user_total.index, user_total.values, color='black', linewidth=5, label='Total')
-add_ram_line(ax1, total_ram_gb)
-ax1.set_ylim(0, max(total_ram_gb, user_total.max()) * 1.1)
-ax1.set_ylabel('Memory Usage (GB)', fontsize=18)
-ax1.set_title('By User  (RSS: may count shared memory multiple times)', fontsize=16, color='grey')
-ax1.legend(bbox_to_anchor=(1.02, 1), loc='upper left', fontsize=14)
-ax1.grid(True, linestyle='--', alpha=0.7, linewidth=0.8)
-ax1.tick_params(axis='both', which='major', labelsize=15)
+    fig.add_trace(
+        go.Scatter(
+            x=user_system.index,
+            y=user_system.values,
+            mode='lines',
+            name='system',
+            legend='legend',
+            line=dict(width=2.5, dash='dot', color=MATPLOTLIB_TAB10[len(user_pivot.columns) % len(MATPLOTLIB_TAB10)]),
+            opacity=0.8,
+            hovertemplate='%{fullData.name}<br>%{y:.2f} GB<extra></extra>',
+        ),
+        row=1,
+        col=1,
+    )
 
-# Program subplot
-for col in prog_pivot.columns:
-    ax2.plot(prog_pivot.index, prog_pivot[col], alpha=0.7, label=col, linewidth=3)
+fig.add_trace(
+    go.Scatter(
+        x=user_total.index,
+        y=user_total.values,
+        mode='lines',
+        name='Total',
+        legend='legend',
+        line=dict(color='#111111', width=4),
+        hovertemplate='%{fullData.name}<br>%{y:.2f} GB<extra></extra>',
+    ),
+    row=1,
+    col=1,
+)
+
+for index, col in enumerate(prog_pivot.columns):
+    fig.add_trace(
+        go.Scatter(
+            x=prog_pivot.index,
+            y=prog_pivot[col],
+            mode='lines',
+            name=col,
+            legend='legend2',
+            line=dict(width=2.5, color=MATPLOTLIB_TAB10[index % len(MATPLOTLIB_TAB10)]),
+            opacity=0.8,
+            hovertemplate='%{fullData.name}<br>%{y:.2f} GB<extra></extra>',
+        ),
+        row=2,
+        col=1,
+    )
+
 if prog_other is not None:
-    ax2.plot(prog_other.index, prog_other.values, label='other', linestyle=':', linewidth=3, alpha=0.7)
-ax2.plot(prog_total.index, prog_total.values, color='black', linewidth=5, label='Total')
-add_ram_line(ax2, total_ram_gb)
-ax2.set_ylim(0, max(total_ram_gb, prog_total.max()) * 1.1)
-ax2.set_ylabel('Memory Usage (GB)', fontsize=18)
-ax2.set_title(f'By Program  (Top {TOP_N}; remainder grouped as "other")', fontsize=16, color='grey')
-ax2.legend(bbox_to_anchor=(1.02, 1), loc='upper left', fontsize=14)
-ax2.grid(True, linestyle='--', alpha=0.7, linewidth=0.8)
-ax2.tick_params(axis='both', which='major', labelsize=15)
+    fig.add_trace(
+        go.Scatter(
+            x=prog_other.index,
+            y=prog_other.values,
+            mode='lines',
+            name='other',
+            legend='legend2',
+            line=dict(width=2.5, dash='dot', color=MATPLOTLIB_TAB10[len(prog_pivot.columns) % len(MATPLOTLIB_TAB10)]),
+            opacity=0.8,
+            hovertemplate='%{fullData.name}<br>%{y:.2f} GB<extra></extra>',
+        ),
+        row=2,
+        col=1,
+    )
 
-# Shared x-axis: one tick per day, rotated neatly
-ax2.xaxis.set_major_locator(mdates.DayLocator())
-ax2.xaxis.set_major_formatter(mdates.DateFormatter('%a %d'))
-for label in ax2.get_xticklabels():
-    label.set_rotation(30)
-    label.set_ha('right')
-    label.set_fontsize(15)
+fig.add_trace(
+    go.Scatter(
+        x=prog_total.index,
+        y=prog_total.values,
+        mode='lines',
+        name='Total',
+        legend='legend2',
+        line=dict(color='#111111', width=4),
+        hovertemplate='%{fullData.name}<br>%{y:.2f} GB<extra></extra>',
+    ),
+    row=2,
+    col=1,
+)
 
-plt.savefig(output_plot, dpi=300, bbox_inches='tight')
+add_ram_line(fig, 1, total_ram_gb)
+add_ram_line(fig, 2, total_ram_gb)
+
+for annotation in fig.layout.annotations:
+    if annotation.text.startswith('By '):
+        annotation.update(font=dict(color='#b8860b', size=15))
+
+fig.update_layout(
+    title=dict(text=f'{hostname} RSS Memory Usage (Past Week)', x=0.5, font=dict(size=24)),
+    height=900,
+    hovermode='x unified',
+    plot_bgcolor='rgba(247, 237, 221, 0.96)',
+    paper_bgcolor='rgba(0, 0, 0, 0)',
+    font=dict(family='Arial, sans-serif', size=14, color='#f5deb3'),
+    margin=dict(l=80, r=170, t=100, b=70),
+    legend=dict(
+        title=dict(text='Users'),
+        orientation='v',
+        yanchor='top',
+        y=0.985,
+        xanchor='left',
+        x=1.005,
+        bgcolor='rgba(42, 24, 16, 0.75)',
+        bordercolor='#8B4513',
+        borderwidth=1,
+        itemclick='toggle',
+        itemdoubleclick='toggleothers',
+        font=dict(size=12),
+        itemsizing='constant',
+    ),
+    legend2=dict(
+        title=dict(text='Programs'),
+        orientation='v',
+        yanchor='top',
+        y=0.44,
+        xanchor='left',
+        x=1.005,
+        bgcolor='rgba(42, 24, 16, 0.75)',
+        bordercolor='#8B4513',
+        borderwidth=1,
+        itemclick='toggle',
+        itemdoubleclick='toggleothers',
+        font=dict(size=12),
+        itemsizing='constant',
+    ),
+)
+
+fig.update_yaxes(
+    title_text='Memory Usage (GB)',
+    gridcolor='rgba(101, 67, 33, 0.18)',
+    zerolinecolor='rgba(101, 67, 33, 0.25)',
+    tickfont=dict(color='#f5deb3'),
+    title_font=dict(color='#f5deb3'),
+    row=1,
+    col=1,
+    range=[0, axis_ceiling(user_total, total_ram_gb)],
+)
+fig.update_yaxes(
+    title_text='Memory Usage (GB)',
+    gridcolor='rgba(101, 67, 33, 0.18)',
+    zerolinecolor='rgba(101, 67, 33, 0.25)',
+    tickfont=dict(color='#f5deb3'),
+    title_font=dict(color='#f5deb3'),
+    row=2,
+    col=1,
+    range=[0, axis_ceiling(prog_total, total_ram_gb)],
+)
+fig.update_xaxes(
+    gridcolor='rgba(101, 67, 33, 0.12)',
+    tickangle=30,
+    tickfont=dict(color='#f5deb3'),
+    tickformatstops=TIME_FORMAT_STOPS,
+)
+
+pio.write_json(fig, output_plot, pretty=False)
 print(f"Success! Plot saved to {output_plot}")

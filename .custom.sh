@@ -37,6 +37,7 @@ module load git  > /dev/null 2>&1
 module load R > /dev/null 2>&1
 module load nodejs/22.4.0 > /dev/null 2>&1
 # module load RStudio
+module load gh/2.0.0 > /dev/null 2>&1
 
 # Bash utils -----------------------------------------------------------
 export PATH="$HOME/software/bash/bin:$PATH"

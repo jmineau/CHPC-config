@@ -21,8 +21,7 @@
 			"path": "../../python/pkgs/uataq/src/uataq"
 		},
 		{
-			"name": "R-STILT",
-			"path": "/uufs/chpc.utah.edu/common/home/u6036966/wkspace/stilt/code/jmineau"
+			"path": "../../../wkspace/meteorology"
 		}
 	],
 	"settings": {
