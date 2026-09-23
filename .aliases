@@ -19,7 +19,7 @@ alias lin-space="df -h | grep lin-group"
 # ---- Projects ----------------------------------------------
 alias lair="cd ~/software/python/pkgs/lair"
 alias methane="cd ~/wkspace/methane"
-alias mobile="cd ~/lgs/24/jkm/mobile"
+alias mobile="cd ~/lgs/24/jkm/uataq/mobile"
 
 # ---- Python ------------------------------------------------
 alias activate-conda="source ~/software/python/miniforge3/etc/profile.d/conda.sh"
