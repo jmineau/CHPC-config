@@ -5,10 +5,6 @@
         },
         {
             "path": "/uufs/chpc.utah.edu/common/home/lin-group25/measurements/pipeline"
-        },
-        {
-            "name": "backup",
-            "path": "/uufs/chpc.utah.edu/common/home/lin-group15/jkm/measurements.backup"
         }
     ],
     

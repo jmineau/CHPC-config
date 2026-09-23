@@ -13,27 +13,13 @@ alias pipeline="cd /uufs/chpc.utah.edu/common/home/lin-group20/measurements/pipe
 alias pipeline-ps="ps -u u0791084 -f | grep 'run/.*\.r'"
 
 # ---- Lin-Groups --------------------------------------------
+# Use `cd ~/lgs/NN` instead of per-group aliases (covers all groups, not just 7-20)
 alias lin-space="df -h | grep lin-group"
-alias lg7="cd /uufs/chpc.utah.edu/common/home/lin-group7"
-alias lg8="cd /uufs/chpc.utah.edu/common/home/lin-group8"
-alias lg9="cd /uufs/chpc.utah.edu/common/home/lin-group9"
-alias lg10="cd /uufs/chpc.utah.edu/common/home/lin-group10"
-alias lg11="cd /uufs/chpc.utah.edu/common/home/lin-group11"
-alias lg12="cd /uufs/chpc.utah.edu/common/home/lin-group12"
-alias lg13="cd /uufs/chpc.utah.edu/common/home/lin-group13"
-alias lg14="cd /uufs/chpc.utah.edu/common/home/lin-group14"
-alias lg15="cd /uufs/chpc.utah.edu/common/home/lin-group15"
-alias lg16="cd /uufs/chpc.utah.edu/common/home/lin-group16"
-alias lg17="cd /uufs/chpc.utah.edu/common/home/lin-group17"
-alias lg18="cd /uufs/chpc.utah.edu/common/home/lin-group18"
-alias lg19="cd /uufs/chpc.utah.edu/common/home/lin-group19"
-alias lg20="cd /uufs/chpc.utah.edu/common/home/lin-group20"
 
 # ---- Projects ----------------------------------------------
 alias lair="cd ~/software/python/pkgs/lair"
-alias landfill="cd ~/wkspace/methane/landfill"
 alias methane="cd ~/wkspace/methane"
-alias mobile="cd ~/wkspace/mobile"
+alias mobile="cd ~/lgs/24/jkm/mobile"
 
 # ---- Python ------------------------------------------------
 alias activate-conda="source ~/software/python/miniforge3/etc/profile.d/conda.sh"
@@ -53,11 +39,8 @@ alias sq="squeue -o \"%8i %12j %4t %10u %20q %20a %10g %20P %10Q %5D %11l %11L %
 
 # ---- User Directories --------------------------------------
 alias 4others="cd ~/4others"
-alias courses="cd ~/courses"
 alias home="cd ~"
 alias public="cd ~/public_html"
 alias scratch="cd /scratch/local/$USER"
-alias tmp="cd ~/tmp"
 alias users="ls -la ~/users"
-alias website="cd ~/website"
 alias wkspace="cd ~/wkspace"

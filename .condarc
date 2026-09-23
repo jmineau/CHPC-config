@@ -1,1 +1,7 @@
 env_prompt: '\n\[\e[00m\](\[\e[0;32m\]{default_env}\[\e[00m\]) '
+
+# Keep the package download cache off the 50GB $HOME quota. Shared scratch
+# (not node-local) so it's visible from login + compute nodes; safe to lose
+# to the 60-day inactivity sweep since it's just a re-downloadable cache.
+pkgs_dirs:
+  - /scratch/general/vast/u6036966/conda-pkgs
