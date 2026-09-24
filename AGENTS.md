@@ -61,7 +61,7 @@ specific data or archived work (see §4).
 | Path | Use | Lifetime |
 |---|---|---|
 | `$TMPDIR` = `/scratch/local/$USER` | **Default TMPDIR** (set in `.custom.sh`). Node-local fast scratch. `scratch` alias cd's here. | Ephemeral / node-local |
-| `/scratch/general/vast/u6036966` | Large shared scratch (50 TB/user cap). HRRR staging lives here — currently `hrrr_subgrid/` (17 TB, actively written; producer not yet identified — see `lin-group27/jkm/stilt/code/hrrr-crop/README.md`), not the `hrrr_western_us/`/`SCRATCH_HRRR_DIR` names below, which don't currently exist on scratch. | Auto-deleted after 60 days inactive |
+| `/scratch/general/vast/u6036966` | Large shared scratch (50 TB/user cap). HRRR staging lives here — `hrrr_subgrid/` (up to ~18 TB for full 2015-06→2026-06 coverage; **stage only the years you'll run**), written by `lin-group27/jkm/stilt/simulations/hrrr_subgrid/stage_hrrr_subgrid.py` (western-US crop of `$LINGROUP_HRRR_DIR`, per-project `config.yaml`'s `mets.hrrr.subgrid_*`) — this replaced the purged `hrrr_western_us/` cache (noticed gone 2026-09-17) and the standalone `stilt/code/hrrr-crop/` array-job toolkit (now legacy/reference only, superseded because it raced across array workers with no lock). | Auto-deleted after 60 days inactive |
 | `/scratch/general/nfs1/$USER` | Older shared scratch (595 TB pool). | Auto-deleted after 60 days inactive |
 
 There is deliberately **no `~/tmp`** — it was removed 2026-09-23 (an ad hoc
@@ -154,7 +154,7 @@ Defined as env vars in `~/.env` (auto-exported via `.custom.sh`):
 | `LINGROUP_HRRR_DIR` | `lin-group21/hrrr/hrrr` | Archived HRRR met fields (+ HYSPLIT-formatted HRRR). |
 | `LAIR_CACHE_DIR` | `lin-group23/jkm/lair_cache` | Cache for the `lair` package. |
 | `STILT_DIR`, `SLV_STILT_DIR` | `lin-group27/jkm/stilt/simulations/stilt` | Production PYSTILT project (2015–2026). `slv.inversion.InversionConfig.stilt_project` defaults to `SLV_STILT_DIR`. (Retargeted 2026-09-15; the old `lin-group15/jkm/STILT` is gone.) |
-| `SCRATCH_HRRR_DIR` | `/scratch/general/vast/u6036966/hrrr/hrrr` | Working HRRR on scratch — **doesn't currently exist** (checked 2026-09-23); the HRRR-crop toolkit that read from it (`lin-group27/jkm/stilt/code/hrrr-crop/`) hasn't run recently. See the scratch row above for what's actually live there now. |
+| `SCRATCH_HRRR_DIR` | `/scratch/general/vast/u6036966/hrrr/hrrr` | Stale env var name — the live cache is actually `hrrr_subgrid/` (see the scratch row above), not this path. `stilt/code/hrrr-crop/` (the toolkit this var was for) is legacy, superseded by `stilt/simulations/hrrr_subgrid/stage_hrrr_subgrid.py`. |
 
 `slv`-specific data roots (also in `~/.env`): `SLV_USER_DATA_DIR`,
 `SLV_ARLMET_DIR`, `SLV_DAQ_DIR`, `SLV_INVENTORIES_DIR`, `SLV_SPATIAL_DIR`,
