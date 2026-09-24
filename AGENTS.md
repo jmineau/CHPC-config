@@ -92,7 +92,7 @@ As of 2026-09-22, all 6 entries are symlinks:
 | `meteorology/` | → `lin-group24/jkm/meteorology/`. PCAP, WBB met, met error work. Has a local `.venv`. |
 | `pipeline/` | → `lin-group24/jkm/uataq/pipeline/`. (Note: distinct from the `pipeline` alias, which cd's to the UATAQ measurement pipeline at `lin-group20/measurements/pipeline` — same name, different project.) |
 | `air.utah/` | → `lin-group24/jkm/uataq/web/` (the `air.utah.edu` + `shiny-shire` repos). |
-| `stilt/` | → `~/lgs/27/jkm/stilt` (`lin-group27/jkm/stilt`). **The STILT tree**: `simulations/` (projects; `simulations/stilt` is the production PYSTILT project, superseded STILT-R projects under `simulations/archive/`), `code/` (tool checkouts), `validation/` (PYSTILT↔STILT-R campaigns). Read its `README.md`. All simulation output goes here, never under `lin-group24`. The R model is called **STILT-R** (not "R-STILT"). |
+| `stilt/` | → `~/lgs/27/jkm/stilt` (`lin-group27/jkm/stilt`). **The STILT tree**: `simulations/` (projects; `simulations/stilt` is the production PYSTILT project, superseded STILT-R projects under `simulations/archive/`), `code/` (one checkout per reference repo: `STILT-R`, `STILT-R_jmineau`, `hysplit`, `X-STILT`, …), `arl/` (HRRR subgrid staging + ARL test data), `validation/` (PYSTILT↔STILT-R campaigns). Read its `README.md`. All simulation output goes here, never under `lin-group24`. Browse-only: its `.vscode` keeps the watcher out of the 100k+ sim dirs; do PYSTILT dev from the package dir instead. The R model is called **STILT-R** (not "R-STILT"). |
 | `pkgs/` | → `~/software/python/pkgs/` (all editable packages in one link: `lair`, `fips`, `PYSTILT`, `slv`, `uataq`, `arl-met`, `cookiecutter-python`). |
 
 Everything else that used to be shelved here was taken off on 2026-09-22 as
@@ -224,7 +224,7 @@ before editing source**:
 |---|---|---|
 | `slv` | `~/software/python/pkgs/slv` | SLV methane workflows (project-specific). |
 | `fips` | `~/software/python/pkgs/fips` | Linear Bayesian inverse-problem machinery. |
-| `stilt` (dist `pystilt`) | `~/software/python/pkgs/PYSTILT` | Python STILT transport model. |
+| `stilt` (dist `pystilt`) | `~/software/python/pkgs/PYSTILT` | Python STILT transport model. Local-only (`.git/info/exclude`): `dev/` (plans: `dev/PLANS/MASTER_PLAN.md`; was `stilt/code/pystilt_dev`), `ecosystem/` (links to the lg27 reference checkouts). |
 | `uataq` | `~/software/python/pkgs/uataq` | UATAQ site/instrument/observation readers. |
 | `lair` | `~/software/python/pkgs/lair` | General atmospheric-science toolkit. |
 | `arlmet` (dist `arl-met`) | `~/software/python/pkgs/arl-met` | NOAA ARL met reader/writer. |
