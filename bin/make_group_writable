@@ -1,0 +1,29 @@
+#!/bin/bash
+# make_group_writable: Adds group write permissions to the specified directory and its contents.
+
+
+target_dir="$1"
+
+# 1. Check if an argument was provided
+if [ -z "$target_dir" ]; then
+    echo "Usage: $(basename "$0") <directory_path>"
+    exit 1
+fi
+
+# 2. Check if the argument is a valid directory
+if [ ! -d "$target_dir" ]; then
+    echo "Error: '$target_dir' is not a valid directory."
+    exit 1
+fi
+
+# 3. Apply permissions recursively
+echo "Adding group write permissions to: $target_dir"
+chmod -R g+w "$target_dir"
+
+# 4. Check success
+if [ $? -eq 0 ]; then
+    echo "Success: Group write permissions added."
+else
+    echo "Error: Failed to change permissions."
+    exit 1
+fi

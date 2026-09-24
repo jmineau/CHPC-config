@@ -1,0 +1,12 @@
+#!/bin/bash
+# On-demand weekly activity log. Prints to the terminal and saves to
+# ~/.weekly-log/weeks/. Cron runs the same thing Friday 06:00.
+#
+#   weeklog                  last 7 days
+#   weeklog --since-last     since the last log was generated
+#   weeklog --days 3         last 3 days
+#   weeklog --since 2026-09-12
+#
+# Handy: before a mid-week meeting, `weeklog --since-last` covers exactly what
+# has happened since the Friday group-meeting log.
+exec "$HOME/.weekly-log/run.sh" --print "$@"
