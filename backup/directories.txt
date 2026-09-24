@@ -14,7 +14,6 @@ $LG24/jkm/uataq/pipeline          ubox:backup/chpc/pipeline
 $COMMON/lin-group27/jkm/stilt    ubox:backup/chpc/stilt
 $LG24/jkm/uataq/historic          ubox:backup/chpc/historic-uataq
 ~/.weekly-log                   ubox:backup/chpc/weekly-log
-~/AGENTS.md                     ubox:backup/chpc/AGENTS.md
 $LG24/jkm/academic               ubox:backup/chpc/academic
 $COMMON/lin-group27/jkm/inversion-dev  ubox:backup/chpc/inversion-dev-lg27
 $LG24/jkm/uataq/docs              ubox:backup/chpc/uataq-docs
