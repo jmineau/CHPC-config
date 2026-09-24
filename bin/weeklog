@@ -9,4 +9,4 @@
 #
 # Handy: before a mid-week meeting, `weeklog --since-last` covers exactly what
 # has happened since the Friday group-meeting log.
-exec "$HOME/.weekly-log/run.sh" --print "$@"
+exec "$HOME/.chpc-config/weekly-log/run.sh" --print "$@"

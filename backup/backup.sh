@@ -5,6 +5,8 @@ export TERM=xterm
 
 module load rclone
 
+SCRIPT_DIR="$HOME/.chpc-config/backup"   # directories.txt, exclude.txt (git-tracked)
+
 # Define logs
 mkdir -p $BACKUP/logs
 LOG=$BACKUP/rclone.log
@@ -25,7 +27,7 @@ function rclone-sync() {
     echo -e "\n--------------------------------------------------" >> $dir_log
     echo -e "Sync Start: `date`\n" >> $dir_log
 
-    rclone -v --stats 900s --stats-file-name-length 0 --retries 5 --log-file $dir_log --max-size 50M --exclude-from $BACKUP/exclude.txt -l sync $1 $2
+    rclone -v --stats 900s --stats-file-name-length 0 --retries 5 --log-file $dir_log --max-size 50M --exclude-from $SCRIPT_DIR/exclude.txt -l sync $1 $2
 
     echo -e "\nSync End: `date`" >> $dir_log
 }
@@ -40,8 +42,24 @@ fi
 echo "---> Script Start: `date` <---" > $LOG
 
 # loop through 'directories.txt' file containing the files to transfer
+MISSING=0
 while read -r local remote; do
+    # skip blank lines / comments
+    [[ -z "$local" || "$local" == \#* ]] && continue
+
+    eval expanded="$local"
+    if [[ ! -e "$expanded" ]]; then
+        echo "WARNING: source does not exist, skipping: $local -> $expanded" | tee -a $LOG >> $CRONLOG
+        MISSING=1
+        continue
+    fi
+
     eval rclone-sync "$local" "$remote"
-done < $BACKUP/directories.txt
+done < $SCRIPT_DIR/directories.txt
 
 echo "---> Script End: `date` <---" >> $LOG
+
+if [[ $MISSING -eq 1 ]]; then
+    echo "One or more backup source paths were missing (see $LOG / $CRONLOG). Fix directories.txt." >> $CRONLOG
+    exit 1
+fi

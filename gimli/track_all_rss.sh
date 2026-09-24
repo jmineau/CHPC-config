@@ -39,4 +39,4 @@ ps -eo comm,rss | awk -v ts="$CURRENT_TIME" '
     }' | sort -t, -nr -k3 >> "$PROG_LOGFILE"
 
 
-$HOME/software/python/miniforge3/envs/Main/bin/python $HOME/.chpc-config/plot_memory.py
+$HOME/software/python/miniforge3/envs/Main/bin/python $HOME/.chpc-config/gimli/plot_memory.py

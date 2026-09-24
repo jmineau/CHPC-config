@@ -22,3 +22,10 @@ cp -rsu source/ dest/
 ```
 find -xtype l -delete
 ```
+
+---
+Originally `lin-group24/jkm/data/README_CP.md`. Went missing during the
+2026-09-23 `data/` cleanup (part of the account reorg,
+`~/chpc-reorg-checklist.md` Phase 6e); James restored it here independently
+of a duplicate agent-side restoration to `directory-linking.md` (deleted as
+the redundant copy).

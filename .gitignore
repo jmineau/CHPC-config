@@ -1,2 +1,3 @@
 .api_keys.env
 .custom.config
+__pycache__/
