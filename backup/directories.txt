@@ -18,4 +18,4 @@ $LG24/jkm/academic               ubox:backup/chpc/academic
 $COMMON/lin-group27/jkm/inversion-dev  ubox:backup/chpc/inversion-dev-lg27
 $LG24/jkm/uataq/docs              ubox:backup/chpc/uataq-docs
 $LG24/jkm/uataq/diagnostics       ubox:backup/chpc/uataq-diagnostics
-$COMMON/lin-group27/jkm/stilt/validation/arl_data  ubox:backup/chpc/arl_data
+$COMMON/lin-group27/jkm/stilt/arl/data  ubox:backup/chpc/arl_data

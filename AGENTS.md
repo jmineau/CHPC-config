@@ -61,7 +61,7 @@ specific data or archived work (see §4).
 | Path | Use | Lifetime |
 |---|---|---|
 | `$TMPDIR` = `/scratch/local/$USER` | **Default TMPDIR** (set in `.custom.sh`). Node-local fast scratch. `scratch` alias cd's here. | Ephemeral / node-local |
-| `/scratch/general/vast/u6036966` | Large shared scratch (50 TB/user cap). HRRR staging lives here — `hrrr_subgrid/` (up to ~18 TB for full 2015-06→2026-06 coverage; **stage only the years you'll run**), written by `lin-group27/jkm/stilt/simulations/hrrr_subgrid/stage_hrrr_subgrid.py` (western-US crop of `$LINGROUP_HRRR_DIR`, per-project `config.yaml`'s `mets.hrrr.subgrid_*`) — this replaced the purged `hrrr_western_us/` cache (noticed gone 2026-09-17) and the standalone `stilt/code/hrrr-crop/` array-job toolkit (now legacy/reference only, superseded because it raced across array workers with no lock). | Auto-deleted after 60 days inactive |
+| `/scratch/general/vast/u6036966` | Large shared scratch (50 TB/user cap). HRRR staging lives here — `hrrr_subgrid/` (up to ~18 TB for full 2015-06→2026-06 coverage; **stage only the years you'll run**), written by `lin-group27/jkm/stilt/arl/hrrr/stage_hrrr_subgrid.py` (western-US crop of `$LINGROUP_HRRR_DIR`, per-project `config.yaml`'s `mets.hrrr.subgrid_*`) — this replaced the purged `hrrr_western_us/` cache (noticed gone 2026-09-17) and the standalone array-job toolkit now at `stilt/arl/hrrr/legacy-array-job/` (kept as reference only, superseded because it raced across array workers with no lock). | Auto-deleted after 60 days inactive |
 | `/scratch/general/nfs1/$USER` | Older shared scratch (595 TB pool). | Auto-deleted after 60 days inactive |
 
 There is deliberately **no `~/tmp`** — it was removed 2026-09-23 (an ad hoc
@@ -104,7 +104,9 @@ didn't move, only the shortcut:
   merged in); `MesoWest/` → `meteorology/data/mesowest/` (the horel-group operational
   link is now clearly labeled `horel_oper`, read-only, not ours); `uataq/` (site-char
   CSV) → `uataq/stationary_site_char.csv`; `arl/` (43 G, met test files) → lg27 STILT
-  `validation/arl_data/`; `hdp/`, `trx01/`, `group_data`/`inventories` links — dropped
+  `stilt/arl/data/` (renamed from `validation/arl_data/` 2026-09-24, merged with the
+  HRRR-crop tooling into `stilt/arl/` since both are ARL/HRRR met-staging, not STILT
+  runs); `hdp/`, `trx01/`, `group_data`/`inventories` links — dropped
   (redundant subsets / covered by env vars). `README_CP.md` (a general `cp -rs`
   directory-linking note) → `~/.chpc-config/notes/cp-rs-link-trees.md`.
 - **UATAQ network/ops work (2026-09-23) → `lin-group24/jkm/uataq/`** (read its
@@ -154,7 +156,7 @@ Defined as env vars in `~/.env` (auto-exported via `.custom.sh`):
 | `LINGROUP_HRRR_DIR` | `lin-group21/hrrr/hrrr` | Archived HRRR met fields (+ HYSPLIT-formatted HRRR). |
 | `LAIR_CACHE_DIR` | `lin-group23/jkm/lair_cache` | Cache for the `lair` package. |
 | `STILT_DIR`, `SLV_STILT_DIR` | `lin-group27/jkm/stilt/simulations/stilt` | Production PYSTILT project (2015–2026). `slv.inversion.InversionConfig.stilt_project` defaults to `SLV_STILT_DIR`. (Retargeted 2026-09-15; the old `lin-group15/jkm/STILT` is gone.) |
-| `SCRATCH_HRRR_DIR` | `/scratch/general/vast/u6036966/hrrr/hrrr` | Stale env var name — the live cache is actually `hrrr_subgrid/` (see the scratch row above), not this path. `stilt/code/hrrr-crop/` (the toolkit this var was for) is legacy, superseded by `stilt/simulations/hrrr_subgrid/stage_hrrr_subgrid.py`. |
+| `SCRATCH_HRRR_DIR` | `/scratch/general/vast/u6036966/hrrr/hrrr` | Stale env var name — the live cache is actually `hrrr_subgrid/` (see the scratch row above), not this path. The toolkit this var was for is now `stilt/arl/hrrr/legacy-array-job/` (legacy), superseded by `stilt/arl/hrrr/stage_hrrr_subgrid.py`. |
 
 `slv`-specific data roots (also in `~/.env`): `SLV_USER_DATA_DIR`,
 `SLV_ARLMET_DIR`, `SLV_DAQ_DIR`, `SLV_INVENTORIES_DIR`, `SLV_SPATIAL_DIR`,
