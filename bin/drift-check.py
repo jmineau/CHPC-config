@@ -44,6 +44,7 @@ PRUNE = {
     "site-packages", ".snakemake", ".conda", ".cache",
     "simulations", "chunks", "by-id", "footprints", "particles", "archive",
     "out", "outputs", "_products", "site_libs", "_site", "cache",
+    "_pending_delete", "bundles", "ecosystem",
 }
 
 # .md deliberately excluded: AGENTS.md/README.md files describe the ~/wkspace
@@ -66,9 +67,9 @@ def find_broken_symlinks():
         cmd = ["find", str(base), "-maxdepth", str(depth),
                "(", *prune_args, ")", "-prune", "-o", "-xtype", "l", "-print"]
         try:
-            out = subprocess.run(cmd, capture_output=True, text=True, timeout=60).stdout
+            out = subprocess.run(cmd, capture_output=True, text=True, timeout=150).stdout
         except subprocess.TimeoutExpired:
-            broken.append(f"  [TIMEOUT after 60s scanning {root} -- widen PRUNE or shrink depth]")
+            broken.append(f"  [TIMEOUT after 150s scanning {root} -- widen PRUNE or shrink depth]")
             continue
         for line in out.splitlines():
             broken.append(f"  {line}  -> {os.readlink(line)}")
@@ -150,9 +151,9 @@ def find_wkspace_refs():
         cmd = ["find", str(base), "-maxdepth", str(depth), "(", *prune_args, ")",
                "-prune", "-o", "-type", "f", "-print"]
         try:
-            out = subprocess.run(cmd, capture_output=True, text=True, timeout=60).stdout
+            out = subprocess.run(cmd, capture_output=True, text=True, timeout=150).stdout
         except subprocess.TimeoutExpired:
-            hits.append(f"  [TIMEOUT after 60s scanning {root}]")
+            hits.append(f"  [TIMEOUT after 150s scanning {root}]")
             continue
         for f in out.splitlines():
             if Path(f).suffix not in CODE_EXT:
