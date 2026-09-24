@@ -46,7 +46,10 @@ PRUNE = {
     "out", "outputs", "_products", "site_libs", "_site", "cache",
 }
 
-CODE_EXT = {".py", ".r", ".R", ".sh", ".md", ".ipynb", ".yml", ".yaml", ".toml"}
+# .md deliberately excluded: AGENTS.md/README.md files describe the ~/wkspace
+# shelf convention in prose (that's their job), which isn't the same as a
+# script hardcoding a path that breaks when something comes off the shelf.
+CODE_EXT = {".py", ".r", ".R", ".sh", ".ipynb", ".yml", ".yaml", ".toml"}
 
 
 def find_broken_symlinks():
@@ -96,7 +99,7 @@ def find_stale_backup_sources():
     backup.sh's own `LG24=$COMMON/lin-group24` (defined in the script, not
     .env -- a naive .env-only expansion misses it and false-positives every
     $LG24/... entry)."""
-    path = HOME / ".backup" / "directories.txt"
+    path = HOME / ".chpc-config" / "backup" / "directories.txt"
     if not path.is_file():
         return [f"  [{path} not found]"]
     env = dict(os.environ)
