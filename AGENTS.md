@@ -232,6 +232,13 @@ before editing source**:
 Reusable code belongs in these packages; workspaces hold notebooks, thin
 drivers, configs, and outputs.
 
+**Frozen release envs for batch jobs.** Every `stilt` on PATH (the `slv` conda env,
+the `uv tool` install) imports the live editable checkout, so James can't edit a
+package while a long SLURM batch runs on it. Big STILT batches therefore use a
+non-editable install of a tagged release in `~/software/python/envs/pystilt-vX.Y.Z`
+(~0.5 GB each; recipe in `lin-group27/jkm/stilt/simulations/trax/README.md`). Remove
+old ones once no project config points at them.
+
 ### R
 - `module load R` runs in `.custom.sh`. `radian` is the preferred REPL
   (alias `r`). `.Rprofile` and `.lintr` come from `~/.chpc-config`.
