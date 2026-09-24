@@ -88,7 +88,7 @@ As of 2026-09-22, all 6 entries are symlinks:
 
 | `~/wkspace/…` | Resolves to / meaning |
 |---|---|
-| `methane/` | → `lin-group24/jkm/methane/`. **Main project.** Contains `SLV/` (the active Salt Lake Valley inversion workspace — has its own detailed `AGENTS.md`), `MethaneAIR/`, `carbontracker/`, `carbonmapper/`, `data/`. |
+| `methane/` | → `lin-group24/jkm/methane/`. **Main project.** Contains `SLV/` (the active Salt Lake Valley inversion workspace — has its own detailed `AGENTS.md`) and one dormant non-SLV sibling, `carbontracker/` (global CarbonTracker-CH4 animation). `MethaneAIR/`, `carbonmapper/`, and `data/` were absorbed into `SLV/` 2026-09-24 (SLV-motivated; see SLV's own README for where each landed). |
 | `meteorology/` | → `lin-group24/jkm/meteorology/`. PCAP, WBB met, met error work. Has a local `.venv`. |
 | `pipeline/` | → `lin-group24/jkm/uataq/pipeline/`. (Note: distinct from the `pipeline` alias, which cd's to the UATAQ measurement pipeline at `lin-group20/measurements/pipeline` — same name, different project.) |
 | `air.utah/` | → `lin-group24/jkm/uataq/web/` (the `air.utah.edu` + `shiny-shire` repos). |
